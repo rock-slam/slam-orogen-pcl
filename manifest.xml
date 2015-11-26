@@ -1,0 +1,13 @@
+<package>
+  <description brief="Orocos support for PCL (Point CLoud Library) types">
+    This package wraps PCL types for use in other orogen projects
+  </description>
+  <author>Sascha Arnold/sascha.arnold@dfki.de</author>
+  <license></license>
+  <url>http://</url>
+  <logo>http://</logo>
+  <depend package="base/cmake" />
+  <depend package="slam/pcl" />
+  
+  <tags>stable</tags>
+</package>

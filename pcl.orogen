@@ -1,0 +1,10 @@
+name "pcl"
+version "0.1"
+
+using_library 'pcl_common-1.7'
+
+import_types_from "pcl/PCLPointCloud2.h"
+
+typekit do
+    export_types '/pcl/PCLPointCloud2'
+end
