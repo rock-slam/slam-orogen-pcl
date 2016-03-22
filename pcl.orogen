@@ -4,7 +4,7 @@ version "0.1"
 using_library 'pcl_common-1.7'
 
 import_types_from "base"
-import_types_from "pcl/PCLPointCloud2.h"
+import_types_from "pclTypes.hpp"
 
 typekit do
     export_types '/pcl/PCLPointCloud2'
