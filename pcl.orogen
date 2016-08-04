@@ -1,7 +1,7 @@
 name "pcl"
 version "0.1"
 
-using_library 'pcl_common-1.7'
+using_library 'pcl_common-1.8'
 
 import_types_from "base"
 
