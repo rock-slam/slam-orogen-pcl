@@ -1,14 +1,8 @@
-#ifndef __PCL_TYPES_HPP__
-#define __PCL_TYPES_HPP__
+#ifndef PCL_AGGREGATOR_TIMESTAMPING_HPP
+#define PCL_AGGREGATOR_TIMESTAMPING_HPP
 
 #include <base/Time.hpp>
 #include <pcl/PCLPointCloud2.h>
-
-namespace pcl
-{
-    /* NOTE: This is a helper to force typelib to parse PCLPointCloud2 when parsing this header */
-    typedef pcl::PCLPointCloud2 _PCLPointCloud2;
-}
 
 namespace aggregator
 {
