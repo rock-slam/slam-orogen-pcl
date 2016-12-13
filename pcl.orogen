@@ -4,8 +4,18 @@ version "0.1"
 using_library 'pcl_common-1.7'
 
 import_types_from "base"
-import_types_from "pclTypes.hpp"
+
+# We want to export the PointCloud2 type, but trick oroGen into using a
+# different header so that the determineTimestap function is present (for the
+# benefit of the aggregator)
+#
+# Import both headers normally, and later force the orogen_include metadata to
+# what we desire
+import_types_from "pcl/PCLPointCloud2.h"
+import_types_from "PCLPointCloud2WithTimestamp.hpp"
 
 typekit do
+    find_type('/pcl/PCLPointCloud2').
+        metadata.set('orogen_include', 'pcl:pcl/PCLPointCloud2WithTimestamp.hpp')
     export_types '/pcl/PCLPointCloud2'
 end
