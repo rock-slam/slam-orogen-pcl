@@ -14,8 +14,28 @@ import_types_from "base"
 import_types_from "pcl/PCLPointCloud2.h"
 import_types_from "PCLPointCloud2WithTimestamp.hpp"
 
+# We have to create a wrapper class for pcl::Vertices, since orogen can't handle that
+# the struct (Vertices) and it's member (vertices) have the same name.
+# (We have to include boost/shared_ptr.hpp because it is missing in the pcl/Vertices header.
+# It is fixed in PCL 1.8.1 onwards and can be removed as soon as they become the default version.)
+import_types_from "wrappers/PCLVertices.hpp"
+typekit.opaque_type '/pcl/Vertices', '/wrappers/PCLVertices', :includes => ['boost/shared_ptr.hpp', 'pcl/Vertices.h']
+
+# We want to export the PolygonMesh type, but trick oroGen into using a
+# different header so that the determineTimestap function is present (for the
+# benefit of the aggregator)
+#
+# Import both headers normally, and later force the orogen_include metadata to
+# what we desire
+import_types_from "pcl/PolygonMesh.h"
+import_types_from "PolygonMeshWithTimestamp.hpp"
+
 typekit do
     find_type('/pcl/PCLPointCloud2').
         metadata.set('orogen_include', 'pcl:pcl/PCLPointCloud2WithTimestamp.hpp')
     export_types '/pcl/PCLPointCloud2'
+
+    find_type('/pcl/PolygonMesh').
+        metadata.set('orogen_include', 'pcl:pcl/PolygonMeshWithTimestamp.hpp')
+    export_types '/pcl/PolygonMesh'
 end
