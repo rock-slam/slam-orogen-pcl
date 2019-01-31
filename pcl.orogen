@@ -1,7 +1,8 @@
 name "pcl"
 version "0.1"
 
-using_library 'pcl_common-1.7'
+pcl_ver = %x{dpkg -s libpcl-dev | grep Version}.match(/\d.\d/)[0]
+using_library "pcl_common-#{pcl_ver}"
 
 import_types_from "base"
 
