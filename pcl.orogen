@@ -1,16 +1,11 @@
 name "pcl"
 version "0.1"
 
-for pk in Utilrb::PkgConfig.each_package() do
-  if(pk.match(/^pcl_common-\d.\d/))
-    pcl_ver = pk.match(/\d.\d/)
-  end
-end
-
-if(!pcl_ver)
+pcl_common = Utilrb::PkgConfig.each_package.find { |name| /^pcl_common/.match(name) }
+if(!pcl_common)
   raise "cannot find the pcl_common pkg-config package"
 end
-using_library "pcl_common-#{pcl_ver}"
+using_library pcl_common
 
 import_types_from "base"
 
