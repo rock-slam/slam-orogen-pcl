@@ -1,7 +1,11 @@
 name "pcl"
 version "0.1"
 
-using_library 'pcl_common-1.7'
+pcl_common = Utilrb::PkgConfig.each_package.find { |name| /^pcl_common/.match(name) }
+if(!pcl_common)
+  raise "cannot find the pcl_common pkg-config package"
+end
+using_library pcl_common
 
 import_types_from "base"
 
