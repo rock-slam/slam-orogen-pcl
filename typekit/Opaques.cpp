@@ -13,11 +13,15 @@
 
 void orogen_typekits::toIntermediate(::wrappers::PCLVertices& intermediate, ::pcl::Vertices const& real_type)
 {
-    intermediate.vertices = real_type.vertices;
+    // resize keeps the assign from degrading to repeated inserts at the end
+    intermediate.vertices.resize(real_type.vertices.size());
+    intermediate.vertices.assign(real_type.vertices.begin(), real_type.vertices.end());
 }
 
 void orogen_typekits::fromIntermediate(::pcl::Vertices& real_type, ::wrappers::PCLVertices const& intermediate)
 {
-    real_type.vertices = intermediate.vertices;
+    // resize keeps the assign from degrading to repeated inserts at the end
+    real_type.vertices.resize(intermediate.vertices.size());
+    real_type.vertices.assign(intermediate.vertices.begin(), intermediate.vertices.end());
 }
 
